@@ -1,0 +1,374 @@
+[
+{
+	"delta": "1",
+	"meta_alert_group": 
+	[
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	}
+	]
+},
+{
+	"delta": "1",
+	"meta_alert_group": 
+	[
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z1", "z3"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	}
+	]
+},
+{
+	"delta": "10",
+	"meta_alert_group": 
+	[
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z1", "z3"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": "§",
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	}
+	]
+},
+{
+	"delta": "50",
+	"meta_alert_group": 
+	[
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z1"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z1"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z3"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": "§",
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	}
+	]
+},
+{
+	"delta": "100",
+	"meta_alert_group": 
+	[
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349930]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z1"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349933]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349936]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z1"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349939]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349961]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z3"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349964]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349967]]
+			}
+		}
+	},
+	{
+		"min_frequency": "1",
+		"max_frequency": "1",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": ["z2"],
+			"LogData": 
+			{
+				"Timestamps": [[1583349970]]
+			}
+		}
+	}
+	]
+},
+{
+	"delta": "100",
+	"meta_alert_group": 
+	[
+	{
+		"min_frequency": "8",
+		"max_frequency": "8",
+		"meta_alert": 
+		{
+			"A": ["a"],
+			"B": ["b"],
+			"C": ["c"],
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	},
+	{
+		"min_frequency": "8",
+		"max_frequency": "8",
+		"meta_alert": 
+		{
+			"X": ["x"],
+			"Y": ["y"],
+			"Z": "§",
+			"LogData": 
+			{
+				"Timestamps": "§"
+			}
+		}
+	}
+	]
+}
+]

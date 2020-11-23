@@ -1,0 +1,82 @@
+[
+{
+  "A": "a",
+  "B": "b",
+  "C": "c",
+  "LogData": {
+    "Timestamps": [
+      1583349930
+    ]
+  }
+},
+{
+  "X": "x",
+  "Y": "y",
+  "Z": "z1",
+  "LogData": {
+    "Timestamps": [
+      1583349933
+    ]
+  }
+},
+{
+  "A": "a",
+  "B": "b",
+  "C": "c",
+  "LogData": {
+    "Timestamps": [
+      1583349936
+    ]
+  }
+},
+{
+  "X": "x",
+  "Y": "y",
+  "Z": "z1",
+  "LogData": {
+    "Timestamps": [
+      1583349939
+    ]
+  }
+},
+{
+  "A": "a",
+  "B": "b",
+  "C": "c",
+  "LogData": {
+    "Timestamps": [
+      1583349961
+    ]
+  }
+},
+{
+  "X": "x",
+  "Y": "y",
+  "Z": "z3",
+  "LogData": {
+    "Timestamps": [
+      1583349964
+    ]
+  }
+},
+{
+  "A": "a",
+  "B": "b",
+  "C": "c",
+  "LogData": {
+    "Timestamps": [
+      1583349967
+    ]
+  }
+},
+{
+  "X": "x",
+  "Y": "y",
+  "Z": "z2",
+  "LogData": {
+    "Timestamps": [
+      1583349970
+    ]
+  }
+}
+]
