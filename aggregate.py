@@ -29,7 +29,7 @@ with open(aggregate_config.output_dir, 'w') as out:
         print('  Processed group ' + str(groups.index(group) + 1) + '/' + str(len(groups)) + ' with ' + str(len(group.alerts)) + ' alerts.' + new_meta_alert_info)
   
   print('\nResults:')
-  for delta, meta_alerts in mam.meta_alerts:
+  for delta, meta_alerts in mam.meta_alerts.items():
     print(' delta = ' + str(delta) + ': ' + str(len(meta_alerts)) + ' meta-alerts generated')
 
   out.write(mam.get_json_representation())

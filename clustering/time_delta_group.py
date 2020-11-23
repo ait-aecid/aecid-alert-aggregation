@@ -1,8 +1,8 @@
 from clustering.objects import Group
 
 def get_time_delta_group_times(timestamps, delta):
-  # Cannot assume that alerts are chronologically ordered, especially when multiple files/ids are used
-  # This does not work online
+  # Cannot assume that alerts are chronologically ordered, especially when multiple files/ids are used.
+  # This code is not implemented for online analysis, only forensic analysis supported.
   group_times = []
   for ts in timestamps:
     group_found = False
@@ -13,14 +13,6 @@ def get_time_delta_group_times(timestamps, delta):
         break
     if group_found is False:
       group_times.append((ts, ts))
-
-  #group_times = []
-  #group_times.append((1, 10))
-  #group_times.append((30, 32))
-  #group_times.append((15, 23))
-  #group_times.append((3, 12))
-  #group_times.append((2, 7))
-  #group_times.append((23.4, 27))
 
   # Sort groups by start time
   start_times = []
@@ -34,17 +26,6 @@ def get_time_delta_group_times(timestamps, delta):
       merged_group_times[-1] = (merged_group_times[-1][0], max(merged_group_times[-1][1], group_time[1]))
     else:
       merged_group_times.append(group_time)
-
-  #merged_group_times = []
-  #already_merged_groups = []
-  #for i in range(len(groups_times)):
-  #  group_time_i = groups_times[i]
-  #  merged_group_time = (group_time_i[0], group_time_i[1])
-  #  for j in range(len(groups_times)):
-  #    group_time_j = groups_times[j]
-  #    if i != j and j not in already_merged_groups and (abs(group_time_i[0] - group_time_j[0]) <= delta or abs(group_time_i[1] - group_time_j[0]) <= delta or abs(group_time_i[0] - group_time_j[1]) <= delta or abs(group_time_i[1] - group_time_j[1]) <= delta or (group_time_j[0] <= group_time_i[0] <= group_time_j[1]) or (group_time_j[0] <= group_time_i[1] <= group_time_j[1]):
-  #      merged_group_time = (min(merged_group_time[0], group_time_j[0]), max(merged_group_time[1], group_time_j[1]))
-  #      already_merged_groups.append(j)
 
   return merged_group_times
 
@@ -82,7 +63,7 @@ def get_groups(alerts, timestamps, group_times):
   return groups
 
 def find_group_connections(groups_small_delta, groups_large_delta):
-  # This could be more efficiently solved when group_times is used instead of iterating over all alerts
+  # This could be more efficiently solved when group_times is used instead of iterating over all alerts.
   for group_small_delta in groups_small_delta:
     supergroup = None
     for alert in group_small_delta.alerts:
