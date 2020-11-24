@@ -140,12 +140,13 @@ class MetaAlertManager:
     return res
 
 class KnowledgeBase:
-  def __init__(self, limit=None, queue_strategy='logarithmic'):
+  def __init__(self, limit=None, queue_strategy='logarithmic', evaluate=False):
       self.delta_dict = {}
-      #self.meta_alert_dict_unlimited = {} # For debugging
       self.meta_alert_dict = {}
       self.limit = limit
       self.queue_strategy = queue_strategy # 'logarithmic' or 'linear', ignored when limit is None
+      self.evaluate = evaluate # Flag for evaluation that requires storing additional data
+      self.meta_alert_dict_unlimited = {} # For evaluation
 
   def add_group_delta(self, group, delta):
     if delta in self.delta_dict:
@@ -157,11 +158,12 @@ class KnowledgeBase:
       self.delta_dict[delta] = deque([group])
 
   def add_group_meta_alert(self, group, meta_alert):
-    # Following lines are for debugging output.
-    #if meta_alert in self.meta_alert_dict_unlimited:
-    #  self.meta_alert_dict_unlimited[meta_alert].append(group)#.id)
-    #else:
-    #  self.meta_alert_dict_unlimited[meta_alert] = [group]#.id]
+    if self.evaluate is True:
+      # Following lines are for evaluation and can be ignored for normal operation.
+      if meta_alert in self.meta_alert_dict_unlimited:
+        self.meta_alert_dict_unlimited[meta_alert].append(group)
+      else:
+        self.meta_alert_dict_unlimited[meta_alert] = [group]
     group.meta_alert = meta_alert
     if self.limit is None:
       # If queues can grow infinitely, just add each group to the queue

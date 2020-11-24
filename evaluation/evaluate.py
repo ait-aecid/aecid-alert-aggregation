@@ -26,7 +26,7 @@ with open('data/out/evaluation/evaluation.txt', 'w') as out, open('data/out/eval
     if min_alert_match_similarity_val is None:
       min_alert_match_similarity_val = threshold
 
-    kb = KnowledgeBase(max_groups_per_meta_alert)
+    kb = KnowledgeBase(max_groups_per_meta_alert, evaluate=True)
     mam = MetaAlertManager(kb)
 
     runtimes = {}
