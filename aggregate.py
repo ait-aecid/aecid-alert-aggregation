@@ -10,7 +10,7 @@ if min_alert_match_similarity_val is None:
   min_alert_match_similarity_val = aggregate_config.threshold
 
 groups_dict = read_input.read_input(aggregate_config.files, aggregate_config.deltas, aggregate_config.input_type)
-with open(aggregate_config.output_dir, 'w') as out:
+with open(aggregate_config.output_dir, 'w') as out, open(aggregate_config.output_alerts_dir, 'w') as out_alerts:
   kb = KnowledgeBase(aggregate_config.max_groups_per_meta_alert, aggregate_config.queue_strategy)
   mam = MetaAlertManager(kb)
 
@@ -34,3 +34,8 @@ with open(aggregate_config.output_dir, 'w') as out:
 
   out.write(mam.get_json_representation())
   print('\nMeta-alerts are stored in ' + str(aggregate_config.output_dir))
+
+  if aggregate_config.output_alerts is True:
+    out_alerts.write(kb.get_json_representation())
+    print('\nAlerts are stored in ' + str(aggregate_config.output_alerts_dir))
+    

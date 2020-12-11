@@ -1,11 +1,12 @@
 [
 {
-	"delta": "1",
+	"delta": 1,
+	"id": 0,
 	"meta_alert_group": 
 	[
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -20,12 +21,13 @@
 	]
 },
 {
-	"delta": "1",
+	"delta": 1,
+	"id": 1,
 	"meta_alert_group": 
 	[
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -40,12 +42,13 @@
 	]
 },
 {
-	"delta": "10",
+	"delta": 10,
+	"id": 2,
 	"meta_alert_group": 
 	[
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -58,8 +61,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -72,8 +75,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -86,8 +89,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -102,12 +105,13 @@
 	]
 },
 {
-	"delta": "50",
+	"delta": 50,
+	"id": 3,
 	"meta_alert_group": 
 	[
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -120,8 +124,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -134,8 +138,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -148,8 +152,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -162,8 +166,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -176,8 +180,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -190,8 +194,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -204,8 +208,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -220,12 +224,13 @@
 	]
 },
 {
-	"delta": "100",
+	"delta": 100,
+	"id": 4,
 	"meta_alert_group": 
 	[
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -238,8 +243,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -252,8 +257,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -266,8 +271,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -280,8 +285,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -294,8 +299,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -308,8 +313,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -322,8 +327,8 @@
 		}
 	},
 	{
-		"min_frequency": "1",
-		"max_frequency": "1",
+		"min_frequency": 1,
+		"max_frequency": 1,
 		"meta_alert": 
 		{
 			"X": ["x"],
@@ -338,12 +343,13 @@
 	]
 },
 {
-	"delta": "100",
+	"delta": 100,
+	"id": 5,
 	"meta_alert_group": 
 	[
 	{
-		"min_frequency": "8",
-		"max_frequency": "8",
+		"min_frequency": 8,
+		"max_frequency": 8,
 		"meta_alert": 
 		{
 			"A": ["a"],
@@ -356,8 +362,8 @@
 		}
 	},
 	{
-		"min_frequency": "8",
-		"max_frequency": "8",
+		"min_frequency": 8,
+		"max_frequency": 8,
 		"meta_alert": 
 		{
 			"X": ["x"],

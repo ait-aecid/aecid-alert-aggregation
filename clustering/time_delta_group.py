@@ -63,6 +63,7 @@ def get_groups(alerts, timestamps, group_times):
   return groups
 
 def find_group_connections(groups_small_delta, groups_large_delta):
+  # This could be improved by finding common group ids allocated to each alert
   # This could be more efficiently solved when group_times is used instead of iterating over all alerts.
   for group_small_delta in groups_small_delta:
     supergroup = None

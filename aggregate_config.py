@@ -15,3 +15,5 @@ max_groups_per_meta_alert = 25 # Maximum queue size [1, inf]. Set to None for un
 queue_strategy = 'logarithmic' # Queue storage strategy, supported strategies are 'linear' and 'logarithmic'.
 w = {'timestamp': 0, 'Timestamp': 0, 'timestamps': 0, 'Timestamps': 0} # Attribute weights used in alert similarity computation. It is recommended to set the weights of timestamps to 0.
 output_dir = 'data/out/aggregate/meta_alerts.txt' # Directory where meta-alerts are stored.
+output_alerts = True # Specifies whether alerts are printed to file.
+output_alerts_dir = 'data/out/aggregate/alerts.txt' # Directory where alerts from input files are stored. 

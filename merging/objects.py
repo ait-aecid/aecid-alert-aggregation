@@ -1,6 +1,7 @@
 import re
 from collections import deque
 import json
+import itertools
 
 class Wildcard:
   def __init__(self, elements=None):
@@ -48,7 +49,10 @@ from merging import merge
 import time
 
 class MetaAlert:
+  id_iter = itertools.count()
+
   def __init__(self, mam):
+    self.id = next(MetaAlert.id_iter)
     self.mam = mam
     self.alert_group = None
     self.support = {}
@@ -124,7 +128,8 @@ class MetaAlertManager:
     res = '[\n'
     for delta, meta_alerts in self.meta_alerts.items():
       for meta_alert in meta_alerts:
-        res += '{\n\t"delta": "' + str(delta) + '",\n'
+        res += '{\n\t"delta": ' + str(delta) + ',\n'
+        res += '\t"id": ' + str(meta_alert.id) + ',\n'
         #res += '\t"groups": "' + str(self.kb.meta_alert_dict_unlimited[meta_alert]) + '",\n' # Debug output
         res += '\t"meta_alert_group": ' + meta_alert.get_json_representation(limit, '\t')
         res += '\n},\n'
@@ -148,6 +153,21 @@ class KnowledgeBase:
       self.evaluate = evaluate # Flag for evaluation that requires storing additional data
       self.meta_alert_dict_unlimited = {} # For evaluation
 
+  def get_json_representation(self):
+    # Since every delta in delta_dict holds all alerts, use any delta and return json representation of all alerts
+    result = '['
+    delta = list(self.delta_dict.keys())[0]
+    for group in self.delta_dict[delta]:
+      for alert in group.alerts:
+        result += '\n{\n'
+        result += '\t"source": "' + alert.file + '",\n'
+        result += '\t"groups": ' + str(alert.groups_id) + ',\n'
+        result += '\t"meta_alerts": ' + str(alert.meta_alerts_id) + ',\n'
+        result += '\t"alert":\n' + alert.get_json_representation(offset='\t')
+        result += '\n},'
+
+    return result[:-1] + '\n]'
+
   def add_group_delta(self, group, delta):
     if delta in self.delta_dict:
       # Uncomment following lines to only store at most self.limit elements per delta in kb. Note that this can lead to missing groups in evaluation.
@@ -165,6 +185,9 @@ class KnowledgeBase:
       else:
         self.meta_alert_dict_unlimited[meta_alert] = [group]
     group.meta_alert = meta_alert
+    # Add meta alert id to all alerts
+    for alert in group.alerts:
+      alert.meta_alerts_id.append(meta_alert.id)
     if self.limit is None:
       # If queues can grow infinitely, just add each group to the queue
       if meta_alert in self.meta_alert_dict:

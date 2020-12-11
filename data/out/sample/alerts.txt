@@ -1,0 +1,362 @@
+[
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [0, 8, 10, 11],
+	"meta_alerts": [0, 2, 3, 4],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583349930]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [1, 8, 10, 11],
+	"meta_alerts": [1, 2, 3, 4],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z1",
+		"LogData": 
+		{
+			"Timestamps": [1583349933]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [2, 8, 10, 11],
+	"meta_alerts": [0, 2, 3, 4],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583349936]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [3, 8, 10, 11],
+	"meta_alerts": [1, 2, 3, 4],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z1",
+		"LogData": 
+		{
+			"Timestamps": [1583349939]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [4, 9, 10, 11],
+	"meta_alerts": [0, 2, 3, 4],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583349961]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [5, 9, 10, 11],
+	"meta_alerts": [1, 2, 3, 4],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z3",
+		"LogData": 
+		{
+			"Timestamps": [1583349964]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [6, 9, 10, 11],
+	"meta_alerts": [0, 2, 3, 4],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583349967]
+		}
+	}
+},
+{
+	"source": "data/sample/test_cup.txt",
+	"groups": [7, 9, 10, 11],
+	"meta_alerts": [1, 2, 3, 4],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z2",
+		"LogData": 
+		{
+			"Timestamps": [1583349970]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [12, 28, 32, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346210]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [13, 28, 32, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z1",
+		"LogData": 
+		{
+			"Timestamps": [1583346213]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [14, 28, 32, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346216]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [15, 28, 32, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z1",
+		"LogData": 
+		{
+			"Timestamps": [1583346219]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [16, 29, 32, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346242]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [17, 29, 32, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z3",
+		"LogData": 
+		{
+			"Timestamps": [1583346245]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [18, 29, 32, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346248]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [19, 29, 32, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z4",
+		"LogData": 
+		{
+			"Timestamps": [1583346251]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [20, 30, 33, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346314]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [21, 30, 33, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z1",
+		"LogData": 
+		{
+			"Timestamps": [1583346317]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [22, 30, 33, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346320]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [23, 30, 33, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z1",
+		"LogData": 
+		{
+			"Timestamps": [1583346323]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [24, 31, 33, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346346]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [25, 31, 33, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z3",
+		"LogData": 
+		{
+			"Timestamps": [1583346349]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [26, 31, 33, 34],
+	"meta_alerts": [0, 2, 3, 5],
+	"alert":
+	{
+		"A": "a",
+		"B": "b",
+		"C": "c",
+		"LogData": 
+		{
+			"Timestamps": [1583346352]
+		}
+	}
+},
+{
+	"source": "data/sample/test_spiral.txt",
+	"groups": [27, 31, 33, 34],
+	"meta_alerts": [1, 2, 3, 5],
+	"alert":
+	{
+		"X": "x",
+		"Y": "y",
+		"Z": "z3",
+		"LogData": 
+		{
+			"Timestamps": [1583346355]
+		}
+	}
+}
+]

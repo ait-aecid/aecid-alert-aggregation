@@ -16,7 +16,7 @@ w = {'timestamp': 0, 'Timestamp': 0, 'timestamps': 0, 'Timestamps': 0}
 min_alert_match_similarity = None # Set to None to use threshold
 
 groups_dict = read_input.read_input(files, deltas, input_type)
-with open('data/out/sample/meta_alerts.txt', 'w') as out:
+with open('data/out/sample/meta_alerts.txt', 'w') as out, open('data/out/sample/alerts.txt', 'w') as out_alerts:
   min_alert_match_similarity_val = min_alert_match_similarity
   if min_alert_match_similarity_val is None:
     min_alert_match_similarity_val = threshold
@@ -45,6 +45,5 @@ with open('data/out/sample/meta_alerts.txt', 'w') as out:
   out.write(mam.get_json_representation())
   print('\nMeta-alerts are stored in data/out/sample/meta_alerts.txt')
 
-  #if aggregate_config.output_alerts is True:
-  #  out_alerts.write(kb.get_json_representation())
-  #  print('\nAlerts are stored in ' + str(aggregate_config.output_alerts_dir))
+  out_alerts.write(kb.get_json_representation())
+  print('\nAlerts are stored in data/out/sample/alerts.txt')

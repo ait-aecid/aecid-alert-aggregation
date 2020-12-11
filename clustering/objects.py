@@ -23,10 +23,12 @@ class Group:
     if isinstance(alerts, list):
       for alert in alerts:
         self.alerts.append(alert)
+        alert.groups_id.append(self.id)
         if alert.file not in self.files:
           self.files.append(alert.file)
     else:
       self.alerts.append(alerts)
+      alerts.groups_id.append(self.id)
       if alerts.file not in self.files:
         self.files.append(alerts.file)
 
@@ -65,18 +67,18 @@ class Group:
       for alert_pattern, freq in self.bag_of_alerts.items():
         res += '\n' + offset + '{\n'
         if isinstance(freq, tuple):
-          res += offset + '\t' + '"min_frequency": "' + str(freq[0]) + '",\n'
-          res += offset + '\t' + '"max_frequency": "' + str(freq[1]) + '",\n'
+          res += offset + '\t' + '"min_frequency": ' + str(freq[0]) + ',\n'
+          res += offset + '\t' + '"max_frequency": ' + str(freq[1]) + ',\n'
         else:
-          res += offset + '\t' + '"min_frequency": "' + str(freq) + '",\n'
-          res += offset + '\t' + '"max_frequency": "' + str(freq) + '",\n'
+          res += offset + '\t' + '"min_frequency": ' + str(freq) + ',\n'
+          res += offset + '\t' + '"max_frequency": ' + str(freq) + ',\n'
         res += offset + '\t' + '"meta_alert": \n' + str(alert_pattern.get_json_representation(offset + '\t'))
         res += '\n' + offset + '},'
     else:
       for alert in self.alerts:
         res += '\n' + offset + '{\n'
-        res += offset + '\t' + '"min_frequency": "1",\n'
-        res += offset + '\t' + '"max_frequency": "1",\n'
+        res += offset + '\t' + '"min_frequency": 1,\n'
+        res += offset + '\t' + '"max_frequency": 1,\n'
         res += offset + '\t' + '"meta_alert": \n' + str(alert.get_json_representation(offset + '\t'))
         res += '\n' + offset + '},'
     return res[:-1] + '\n' + offset + ']'
