@@ -4,18 +4,10 @@ from clustering import time_delta_group
 from similarity import similarity
 from merging.objects import MetaAlert, MetaAlertManager, KnowledgeBase
 
-# files = [[system_A_ids_1, system_A_ids_2], [system_B_ids_1, system_B_ids_2, system_B_ids_3, ...], ...]
-# For a single file, just use files = [['path_to_file']]
-#files = [['data/ossec/ossec_cup.json'], ['data/ossec/ossec_onion.json'], ['data/ossec/ossec_insect.json']]
-#files = [['data/ossec/ossec_cup.json', 'data/aminer/aminer_cup.txt'], ['data/ossec/ossec_onion.json', 'data/aminer/aminer_onion.txt'], ['data/ossec/ossec_insect.json', 'data/aminer/aminer_insect.txt'], ['data/ossec/ossec_spiral.json', 'data/aminer/aminer_spiral.txt']]
-#files = [['data/test/test_cup.txt'], ['data/test/test_onion.txt'], ['data/test/test_insect.txt'], ['data/test/test_spiral.txt']]
-files = [['data/patent/test_cup.txt'], ['data/patent/test_spiral.txt']]
-#files = [['data/aminer/exim_cup.txt'], ['data/aminer/exim_insect.txt'], ['data/aminer/exim_spiral.txt']]
-#files = [['data/aminer/nmap_cup.txt'], ['data/aminer/nmap_insect.txt'], ['data/aminer/nmap_spiral.txt'], ['data/aminer/nmap_onion.txt']]
-#files = [['data/aminer/sample.txt']]
-input_type = 'aminer' # One of 'aminer', 'ossec', or 'idmef'. If None, automatically selects correct parser based on input file directory
-deltas = [1, 10, 50, 100] # [0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50] # seconds
-thresholds = [0.5]
+files = [['data/sample/test_cup.txt'], ['data/sample/test_spiral.txt']]
+input_type = 'aminer' 
+deltas = [1, 10, 50, 100] # seconds
+threshold = 0.5
 max_val_limit = 2
 min_key_occurrence = 0.1
 min_val_occurrence = 0.1
@@ -24,7 +16,7 @@ w = {'timestamp': 0, 'Timestamp': 0, 'timestamps': 0, 'Timestamps': 0}
 min_alert_match_similarity = None # Set to None to use threshold
 
 groups_dict = read_input.read_input(files, deltas, input_type)
-for threshold in thresholds:
+with open('data/out/sample/meta_alerts.txt', 'w') as out:
   min_alert_match_similarity_val = min_alert_match_similarity
   if min_alert_match_similarity_val is None:
     min_alert_match_similarity_val = threshold
@@ -37,7 +29,6 @@ for threshold in thresholds:
     for delta, groups in delta_dicts.items():
       print(' Processing groups with delta=' + str(delta))
       for group in groups:
-        #print(group)
         label.label_group(group)
         group.create_bag_of_alerts(min_alert_match_similarity_val, max_val_limit=max_val_limit, min_key_occurrence=min_key_occurrence, min_val_occurrence=min_val_occurrence)
         new_meta_alert_generated = mam.add_to_meta_alerts(group, delta, threshold, min_alert_match_similarity=min_alert_match_similarity_val, max_val_limit=max_val_limit, min_key_occurrence=min_key_occurrence, min_val_occurrence=min_val_occurrence, w=w, alignment_weight=alignment_weight)
@@ -47,4 +38,13 @@ for threshold in thresholds:
           new_meta_alert_info = ' New meta-alert generated.'
         print('  Processed group ' + str(groups.index(group) + 1) + '/' + str(len(groups)) + ' with ' + str(len(group.alerts)) + ' alerts.' + new_meta_alert_info)
 
-  #print(mam.get_json_representation())
+  print('\nResults:')
+  for delta, meta_alerts in mam.meta_alerts.items():
+    print(' delta = ' + str(delta) + ': ' + str(len(meta_alerts)) + ' meta-alerts generated')
+
+  out.write(mam.get_json_representation())
+  print('\nMeta-alerts are stored in data/out/sample/meta_alerts.txt')
+
+  #if aggregate_config.output_alerts is True:
+  #  out_alerts.write(kb.get_json_representation())
+  #  print('\nAlerts are stored in ' + str(aggregate_config.output_alerts_dir))
