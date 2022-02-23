@@ -99,6 +99,9 @@ def get_list_similarity(a, b):
   for elem_b in b:
     if elem_b not in used_b:
       mismatch += 1 
+      
+  if match == 0 and mismatch == 0:
+    return 1, 0
 
   # Normalize so that lists count same as value
   return match / (match + mismatch), mismatch / (match + mismatch)
@@ -112,6 +115,9 @@ def get_mergelist_similarity(merge_a, merge_b):
       match += 1
   if match == 0:
     mismatch = 1
+    
+  if len(merge_a) == 0 and len(merge_b) == 0:
+    return 1, 0
 
   return match / min(len(merge_a), len(merge_b)), mismatch
 
@@ -140,6 +146,9 @@ def get_alert_mergelist_similarity(a, merge, a_type):
   else:
     mismatch += 1
 
+  if match == 0 and mismatch == 0:
+    return 1, 0
+    
   # Normalize so that lists counts same as value
   return match / (match + mismatch), mismatch / (match + mismatch)
 
