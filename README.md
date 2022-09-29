@@ -40,4 +40,4 @@ The output will be generated on the console or in the respective directory in da
 
 More information on the aecid-alert-aggregation is provided in the following paper:
 
-Landauer M., Skopik F., Wurzenberger M., Rauber A.: Dealing with Security Alert Flooding: Using Machine Learning for Domain-independent Alert Aggregation. Under review.
+Landauer M., Skopik F., Wurzenberger M., Rauber A.: [Dealing with Security Alert Flooding: Using Machine Learning for Domain-independent Alert Aggregation.](https://dl.acm.org/doi/full/10.1145/3510581) ACM Transactions on Privacy and Security, 25(3), 1-36. \[[PDF](https://dl.acm.org/doi/pdf/10.1145/3510581)\]
