@@ -308,10 +308,14 @@ def get_group_similarity_alignment(group_a, group_b, early_stopping_threshold=0.
       alignment_b.append(len(used_a) + 1)
   if alignment_weight != 0.0 and len(alignment_a) > 0 and len(alignment_b) > 0:
     sm = CSequenceMatcher(None, alignment_a, alignment_b, autojunk=False)
-    lcs_len = sum([block.size for block in sm.get_matching_blocks()])
     if partial is False:
-      return lcs_len / min(len(alignment_a), len(alignment_b))
+      if len(alignment_a) * len(alignment_b) > (10000 * 10000):
+          # For very large sequences, only an estimation for the upper bound can be reasonably used due to the high complexity of LCS computation
+          return sm.real_quick_ratio() # Either use sm.quick_ratio() or sm.real_quick_ratio()
+      else:
+          return sum([block.size for block in sm.get_matching_blocks()]) / min(len(alignment_a), len(alignment_b))
     else:
+      lcs_len = sum([block.size for block in sm.get_matching_blocks()])
       return lcs_len / len(alignment_a)
   return 0.0
 

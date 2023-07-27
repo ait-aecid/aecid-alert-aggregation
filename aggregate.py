@@ -21,12 +21,14 @@ with open(aggregate_config.output_dir, 'w') as out, open(aggregate_config.output
       for group in groups:
         label.label_group(group)
         group.create_bag_of_alerts(min_alert_match_similarity_val, max_val_limit=aggregate_config.max_val_limit, min_key_occurrence=aggregate_config.min_key_occurrence, min_val_occurrence=aggregate_config.min_val_occurrence)
-        new_meta_alert_generated = mam.add_to_meta_alerts(group, delta, aggregate_config.threshold, min_alert_match_similarity=min_alert_match_similarity_val, max_val_limit=aggregate_config.max_val_limit, min_key_occurrence=aggregate_config.min_key_occurrence, min_val_occurrence=aggregate_config.min_val_occurrence, w=aggregate_config.w, alignment_weight=aggregate_config.alignment_weight)
+        new_meta_alert_generated, sim, meta_alert = mam.add_to_meta_alerts(group, delta, aggregate_config.threshold, min_alert_match_similarity=min_alert_match_similarity_val, max_val_limit=aggregate_config.max_val_limit, min_key_occurrence=aggregate_config.min_key_occurrence, min_val_occurrence=aggregate_config.min_val_occurrence, w=aggregate_config.w, alignment_weight=aggregate_config.alignment_weight)
         kb.add_group_delta(group, delta)
         new_meta_alert_info = ''
         if new_meta_alert_generated is True:
-          new_meta_alert_info = ' New meta-alert generated.'
-        print('  Processed group ' + str(groups.index(group) + 1) + '/' + str(len(groups)) + ' with ' + str(len(group.alerts)) + ' alerts.' + new_meta_alert_info)
+          new_meta_alert_info = ' New meta-alert ' + str(meta_alert.id) + ' generated. (sim=' + str(round(sim, 2)) + ')'
+        else:
+          new_meta_alert_info = ' Add group to meta-alert ' + str(meta_alert.id) + ' (sim=' + str(round(sim, 2)) + ') representing ' + str(meta_alert.alert_group.attacks)
+        print('  Processed group ' + str(groups.index(group) + 1) + '/' + str(len(groups)) + ' from ' + str(group.attacks) + ' phase with ' + str(len(group.alerts)) + ' alerts.' + new_meta_alert_info)
   
   print('\nResults:')
   for delta, meta_alerts in mam.meta_alerts.items():
@@ -38,4 +40,4 @@ with open(aggregate_config.output_dir, 'w') as out, open(aggregate_config.output
   if aggregate_config.output_alerts is True:
     out_alerts.write(kb.get_json_representation())
     print('\nAlerts are stored in ' + str(aggregate_config.output_alerts_dir))
-    
+

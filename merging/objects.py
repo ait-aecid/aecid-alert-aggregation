@@ -93,7 +93,7 @@ class MetaAlertManager:
     if maxSimilarity >= threshold:
       self.kb.add_group_meta_alert(group, best_matching_meta_alert)
       best_matching_meta_alert.update_alert(maxSimilarity, min_alert_match_similarity=min_alert_match_similarity, max_val_limit=max_val_limit, min_key_occurrence=min_key_occurrence, min_val_occurrence=min_val_occurrence)
-      return False # Indicates that no new meta-alert was generated
+      return False, maxSimilarity, best_matching_meta_alert # Indicates that no new meta-alert was generated
     else:
       meta_alert = MetaAlert(self)
       self.kb.add_group_meta_alert(group, meta_alert)
@@ -102,7 +102,7 @@ class MetaAlertManager:
         self.meta_alerts[delta].append(meta_alert)
       else:
         self.meta_alerts[delta] = [meta_alert]
-      return True # Indicates that a new meta-alert was generated
+      return True, maxSimilarity, meta_alert # Indicates that a new meta-alert was generated
 
   def get_most_similar_meta_alert(self, group, delta, threshold, min_alert_match_similarity=0.0, max_val_limit=None, min_key_occurrence=0.0, min_val_occurrence=0.0, bag_limit=2000, w=None, alignment_weight=0.0, force_label=None, partial=False):
     if len(group.bag_of_alerts) == 0:

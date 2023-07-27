@@ -31,46 +31,67 @@ def merge_json(alerts, max_val_limit=None, min_key_occurrence=0.0, min_val_occur
   merge = {}
   for key, key_type in key_types.items():
     values = []
-    # Lists are not hashable, not possible to use dict or Counter
-    values_unique = []
-    values_freq = []
-    for alert in alerts:
-      if key not in alert:
-        continue
-      v = alert[key]
-      if type(v) is Mergelist:
-        # Value is a Mergelist, extract its elements and treat as list of values
-        values.extend(v.elements)
-        for mergelist_value in v.elements:
-          if mergelist_value not in values_unique:
-            values_unique.append(mergelist_value)
-            values_freq.append(1)
-          else:
-            values_freq[values_unique.index(mergelist_value)] += 1
-      else:
-        # Value is not a Mergelist, treat as normal value
-        values.append(v)
-        if v not in values_unique:
-          values_unique.append(v)
-          values_freq.append(1)
-        else:
-          values_freq[values_unique.index(v)] += 1
     if key_type == {'dict'}:
+      # No need to analyze values in dictionary, just call this method recursively for all values
+      for alert in alerts:
+        if key not in alert:
+          continue
+        v = alert[key]
+        if type(v) is Mergelist:
+          # Value is a Mergelist, extract its elements and treat as list of values
+          values.extend(v.elements)
+        else:
+          # Value is not a Mergelist, treat as normal value
+          values.append(v)
       merge[key] = merge_json(values, max_val_limit, min_key_occurrence, min_val_occurrence)
     else:
       # Lists are not hashable, not possible to use dict or Counter
+      values_unique = []
+      values_freq = []
+      set_wildcard = False
       values_select = []
-      for i in range(len(values_unique)):
-        if type(values_unique[i]) is Wildcard:
-          # If one of the values is a wildcard, merged values should be a wildcard as well
-          values_select = []
-          break
-        if values_freq[i] / len(values) >= min_val_occurrence:
-          values_select.append(values_unique[i])
-      if len(values_select) == 0 or (max_val_limit is not None and len(values_select) > max_val_limit):
-        # Make wildcard when no value occurs sufficiently many times (min_val_occurrence) or too many values occur (max_val_limit)
-        merge[key] = Wildcard(values_select)
+      for alert in alerts:
+        if key not in alert:
+          continue
+        v = alert[key]
+        if type(v) is Wildcard:
+            # If any value is a wildcard, all values will be merged into a wildcard
+            set_wildcard = True
+            break
+        if type(v) is Mergelist:
+          # Value is a Mergelist, extract its elements and treat as list of values
+          values.extend(v.elements)
+          for mergelist_value in v.elements:
+            if mergelist_value not in values_unique:
+              values_unique.append(mergelist_value)
+              values_freq.append(1)
+            else:
+              values_freq[values_unique.index(mergelist_value)] += 1
+        else:
+          # Value is not a Mergelist, treat as normal value
+          values.append(v)
+          if v not in values_unique:
+            values_unique.append(v)
+            values_freq.append(1)
+          else:
+            values_freq[values_unique.index(v)] += 1
+        values_select = []
+        if max_val_limit is not None and len(values_unique) > max_val_limit:
+          for i in range(len(values_unique)):
+            if values_freq[i] / len(values) >= min_val_occurrence:
+              values_select.append(values_unique[i])
+          if len(values_select) == 0 or len(values_select) > max_val_limit:
+            # If too many values occur or all values are equally rare, merge them into a wildcard
+            set_wildcard = True
+            break
+      # Set value either as wildcard (if too many distinct values occur) or a mergelist otherwise
+      if set_wildcard:
+        merge[key] = Wildcard([])
       else:
+        values_select = []
+        for i in range(len(values_unique)):
+          if values_freq[i] / len(values) >= min_val_occurrence:
+            values_select.append(values_unique[i])
         merge[key] = Mergelist(values_select)
 
   return merge
@@ -156,6 +177,10 @@ def merge_seq_alignment(groups, merged_bags, merged_bags_inv):
     alignment = []
     for alert in group.merge_seq:
       alignment.append(merge_list.index(merged_bags_inv[alert]))
+    if len(alignment) > 10000:
+       # Unfortunately, computing LCS for very long alignments does not scale; one of the alignments is used for merge without computing LCS.
+       lcs = alignment
+       break
     if first_alignment is True:
       lcs = alignment
       first_alignment = False
