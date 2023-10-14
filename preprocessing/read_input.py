@@ -8,16 +8,18 @@ def read_input(files, deltas, input_type, noise=0.0):
     alerts = []
     timestamps = []
     for f in filegroup:
-      f_parts = f.split('/')
-      file_type = None
-      if len(f_parts) > 1:
+      f_parts = f.split('/')[-1].split('.')[0].split('_')
+      # Alert files are sometimes named fox_aminer or aminer_cup; i.e., relevant IDS name is either first or second and needs to be extracted
+      if f_parts[0] == "aminer" or f_parts[0] == "wazuh" or f_parts[0] == "ossec":
+        file_type = f_parts[0]
+      else:
         file_type = f_parts[1]
       if input_type == 'aminer' or file_type == 'aminer':
         file_alerts, file_timestamps = preprocess.read_aminer_json(f)
-      elif input_type == 'ossec' or file_type == 'ossec':
+      elif input_type == 'ossec' or file_type == 'ossec' or input_type == 'wazuh' or file_type == 'wazuh':
         file_alerts, file_timestamps = preprocess.read_ossec_full_json(f)
       else:
-        print('Unknown file type. Please specify input_type. Aborting.')
+        print('Unknown file type ' + str(file_type) + '. Please specify input_type. Aborting.')
         break
       if len(file_alerts) != len(file_timestamps):
         print('Alerts and timestamps are diverging, something went wrong during input file preprocessing!')

@@ -2,6 +2,8 @@ import json
 from dateutil import parser
 import re
 from preprocessing.objects import Alert
+from json import JSONDecodeError
+from datetime import datetime
 
 delimiters = '"|,|:| '
 
@@ -92,17 +94,38 @@ def read_ossec_full_json(filename):
       alert_obj = Alert(json_alert)
       alert_obj.file = filename
       alerts.append(alert_obj)
-      timestamps.append(parser.parse(alert_obj.d['timestamp']).timestamp())
+      if 'timestamp' in alert_obj.d:
+          # In alerts from AIT-LDSv1, field is named 'timestamp'
+          timestamps.append(parser.parse(alert_obj.d['timestamp']).timestamp())
+      else:
+          # In alerts from AIT-ADS, field is named '@timestamp'
+          timestamps.append(datetime.strptime(alert_obj.d['@timestamp'], "%Y-%m-%dT%H:%M:%S.%f%z").timestamp())
   return alerts, timestamps
 
 def read_aminer_json(filename):
   alerts = []
   timestamps = []
+  retry_lines = False
+  json_alerts = []
   with open(filename) as f:
-    json_alerts = json.load(f)
+    try:
+      # Try to read entire file as list of alerts (e.g., alerts from the AIT-LDSv1.1) 
+      json_alerts = json.load(f)
+    except JSONDecodeError:
+      # Cannot load json this way, attempt to read by line instead
+      retry_lines = True
+      json_alerts = []
+  if retry_lines:
+    with open(filename) as f:
+      for line in f:
+        json_alerts.append(json.loads(line))
+  # Create alert objects for all loaded json objects
   for json_alert in json_alerts:
     alert_obj = Alert(json_alert)
     alert_obj.file = filename
     alerts.append(alert_obj)
-    timestamps.append(json_alert['LogData']['Timestamps'][0])
+    if retry_lines:
+        timestamps.append(json_alert['LogData']['DetectionTimestamp'][0])
+    else:
+        timestamps.append(json_alert['LogData']['Timestamps'][0])
   return alerts, timestamps

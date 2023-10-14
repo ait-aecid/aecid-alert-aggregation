@@ -1,76 +1,39 @@
 import datetime
 from datetime import timezone
 from dateutil import parser
+from attacktimes import get_phase
+from datetime import datetime
 
 def label_group(group):
-  logfile = group.files[0]
+  logfile_parts = group.files[0].split('/')[-1].split('.')[0].split('_')
+  # Alert files are sometimes named fox_aminer or aminer_cup; i.e., relevant scenario name is either first or second and needs to be extracted
+  if logfile_parts[0] == "aminer" or logfile_parts[0] == "wazuh" or logfile_parts[0] == "ossec":
+    logfile = logfile_parts[1]
+  else:
+    logfile = logfile_parts[0]
   attack = set()
   only_noise_alerts = True
   for alert in group.alerts:
     ts = 0
     if 'timestamp' in alert.d:
+      # For Wazuh alerts from the AIT-LDSv1.1
       ts = parser.parse(alert.d['timestamp']).timestamp()
+    elif '@timestamp' in alert.d:
+      # For Wazuh alerts from the AIT-ADS
+      ts = datetime.strptime(alert.d['@timestamp'], "%Y-%m-%dT%H:%M:%S.%f%z").timestamp()
     elif 'LogData' in alert.d and 'Timestamps' in alert.d['LogData']:
+      # For AMiner alerts
       ts = alert.d['LogData']['Timestamps'][0]
     else:
       print('Unknown alert ' + str(alert))
     if alert.noise is False:
       only_noise_alerts = False
-    if 'cup' in logfile:
-      if datetime.datetime(2020, 3, 4, 19, 17, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 18, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nmap')
-      elif datetime.datetime(2020, 3, 4, 19, 18, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 19, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nikto')
-      elif datetime.datetime(2020, 3, 4, 19, 21, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 22, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('vrfy')
-      elif datetime.datetime(2020, 3, 4, 19, 25, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 31, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('hydra')
-      elif datetime.datetime(2020, 3, 4, 19, 32, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 33, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('upload')
-      elif datetime.datetime(2020, 3, 4, 19, 35, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 40, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('exploit')
-    elif 'spiral' in logfile:
-      if datetime.datetime(2020, 3, 4, 17, 57, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 17, 58, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nmap')
-      elif datetime.datetime(2020, 3, 4, 18, 1, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 17, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nikto')
-      elif datetime.datetime(2020, 3, 4, 18, 19, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 20, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('vrfy')
-      elif datetime.datetime(2020, 3, 4, 18, 23, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 28, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('hydra')
-      elif datetime.datetime(2020, 3, 4, 18, 28, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 30, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('upload')
-      elif datetime.datetime(2020, 3, 4, 18, 33, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 38, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('exploit')
-    elif 'insect' in logfile:
-      if datetime.datetime(2020, 3, 4, 13, 51, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 13, 52, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nmap')
-      elif datetime.datetime(2020, 3, 4, 13, 54, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 14, 11, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nikto')
-      elif datetime.datetime(2020, 3, 4, 14, 11, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 14, 12, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('vrfy')
-      elif datetime.datetime(2020, 3, 4, 14, 14, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 14, 17, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('hydra')
-      elif datetime.datetime(2020, 3, 4, 14, 18, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 14, 20, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('upload')
-      elif datetime.datetime(2020, 3, 4, 14, 24, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 14, 29, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('exploit')
-    elif 'onion' in logfile:
-      if datetime.datetime(2020, 3, 4, 18, 43, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 44, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nmap')
-      elif datetime.datetime(2020, 3, 4, 18, 46, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 47, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('nikto')
-      elif datetime.datetime(2020, 3, 4, 18, 49, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 50, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('vrfy')
-      elif datetime.datetime(2020, 3, 4, 18, 50, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 52, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('hydra')
-      elif datetime.datetime(2020, 3, 4, 18, 55, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 18, 56, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('upload')
-      elif datetime.datetime(2020, 3, 4, 19, 00, 00).replace(tzinfo=timezone.utc).timestamp() < ts < datetime.datetime(2020, 3, 4, 19, 5, 00).replace(tzinfo=timezone.utc).timestamp():
-        attack.add('exploit')
+    attack_label = get_phase(logfile, ts)
+    if attack_label != "":
+        attack.add(attack_label)
   if len(attack) == 0:
     attack = set(['non-attack'])
   if only_noise_alerts is True:
     attack = set(['noise'])
   group.attacks = set(attack) 
-  return logfile.split('_')[1].split('.')[0] + '-' + attack.pop()
+  return logfile + '-' + attack.pop()
