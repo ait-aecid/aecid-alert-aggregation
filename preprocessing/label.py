@@ -7,7 +7,7 @@ from datetime import datetime
 def label_group(group):
   logfile_parts = group.files[0].split('/')[-1].split('.')[0].split('_')
   # Alert files are sometimes named fox_aminer or aminer_cup; i.e., relevant scenario name is either first or second and needs to be extracted
-  if logfile_parts[0] == "aminer" or logfile_parts[0] == "wazuh" or logfile_parts[0] == "ossec":
+  if logfile_parts[0] == "aminer" or logfile_parts[0] == "wazuh" or logfile_parts[0] == "ossec" or logfile_parts[0] == "test":
     logfile = logfile_parts[1]
   else:
     logfile = logfile_parts[0]
