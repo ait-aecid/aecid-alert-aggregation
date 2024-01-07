@@ -1,13 +1,5 @@
 # aecid-alert-aggregation
-A method for grouping, clustering, and merging semi-structured alerts.
-
-Please note that the following dependencies must be installed to run the code:
-```
-pip3 install cdifflib
-pip3 install editdistance
-```
-
-To get started, just clone this repository and execute
+A method for grouping, clustering, and merging semi-structured alerts. To get started, just clone this repository and execute
 ```
 python3 aggregate.py
 ```

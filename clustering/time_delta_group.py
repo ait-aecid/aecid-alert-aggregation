@@ -1,4 +1,5 @@
 from clustering.objects import Group
+from astropy import stats
 
 def get_time_delta_group_times(timestamps, delta):
   # Cannot assume that alerts are chronologically ordered, especially when multiple files/ids are used.
@@ -28,6 +29,23 @@ def get_time_delta_group_times(timestamps, delta):
       merged_group_times.append(group_time)
 
   return merged_group_times
+
+def get_time_bayes_group_times(timestamps_unsorted):
+  timestamps = sorted(timestamps_unsorted)
+  group_times = []
+  group_time = (timestamps[0], timestamps[0])
+  blocks = stats.bayesian_blocks(timestamps, fitness='events')
+  current_block_index = 0
+  prev_time = None
+  for timestamp in timestamps:
+    # Since many timestamps are integers, this method will produce groups for each second during high-frequency alerts; avoid by forcing that groups are larger than 1 second
+    if prev_time is None or timestamp < blocks[current_block_index] or abs(timestamp - prev_time) < 1.001:
+      group_time = (group_time[0], timestamp)
+    else:
+      group_times.append((group_time[0], timestamp))
+      group_time = (timestamp, timestamp)
+    prev_time = timestamp
+  return group_times
 
 def get_group_indices(timestamps, group_times):
   group_indices = []

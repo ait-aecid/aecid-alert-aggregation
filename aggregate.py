@@ -9,7 +9,7 @@ min_alert_match_similarity_val = aggregate_config.min_alert_match_similarity
 if min_alert_match_similarity_val is None:
   min_alert_match_similarity_val = aggregate_config.threshold
 
-groups_dict = read_input.read_input(aggregate_config.files, aggregate_config.deltas, aggregate_config.input_type)
+groups_dict = read_input.read_input(aggregate_config.files, aggregate_config.deltas, aggregate_config.input_type, 0.0, aggregate_config.group_strategy, aggregate_config.group_type)
 with open(aggregate_config.output_dir, 'w') as out, open(aggregate_config.output_alerts_dir, 'w') as out_alerts:
   kb = KnowledgeBase(aggregate_config.max_groups_per_meta_alert, aggregate_config.queue_strategy)
   mam = MetaAlertManager(kb)

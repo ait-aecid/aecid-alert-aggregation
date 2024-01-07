@@ -4,7 +4,9 @@
 files = [['data/ossec/ossec_cup.json', 'data/aminer/aminer_cup.txt'], ['data/ossec/ossec_onion.json', 'data/aminer/aminer_onion.txt'], ['data/ossec/ossec_insect.json', 'data/aminer/aminer_insect.txt'], ['data/ossec/ossec_spiral.json', 'data/aminer/aminer_spiral.txt']]
 
 input_type = None # Supports 'aminer' or 'ossec'. If None, automatically selects correct parser based on input file directory.
-deltas = [0.5, 5] # Delta time intervals for group formation in seconds.
+deltas = [0.5, 5] # Delta time intervals for group formation in seconds. When group_strategy 'bayes' is used, this parameter has no effect.
+group_strategy = 'delta' # Alert group formation strategy, supported strategies are 'delta' (default), 'type' (like delta, but for each group_type separately), and 'bayes' (bayesian binning)
+group_type = ['AnalysisComponent.AnalysisComponentName', 'rule.description'] # Alert attributes used for group formation. Note that for this to have an effect it is necessary that group_strategy is set to 'type'.
 threshold = 0.3 # Minimum group similarity threshold for incremental clustering [0, 1].
 min_alert_match_similarity = None # Minimum alert similarity threshold for group matching [0,1]. Set to None to use same value as threshold.
 max_val_limit = 10 # Maximum number of values in merge lists before they are replaced by wildcards [0, inf].
