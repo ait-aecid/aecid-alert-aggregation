@@ -20,7 +20,7 @@ def label_group(group):
       ts = parser.parse(alert.d['timestamp']).timestamp()
     elif '@timestamp' in alert.d:
       # For Wazuh alerts from the AIT-ADS
-      ts = datetime.strptime(alert.d['@timestamp'], "%Y-%m-%dT%H:%M:%S.%f%z").timestamp()
+      ts = parser.isoparse(alert.d['@timestamp']).timestamp()
     elif 'LogData' in alert.d and 'Timestamps' in alert.d['LogData']:
       # For AMiner alerts
       ts = alert.d['LogData']['Timestamps'][0]
