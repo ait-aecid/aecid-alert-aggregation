@@ -99,7 +99,7 @@ def read_ossec_full_json(filename):
           timestamps.append(parser.parse(alert_obj.d['timestamp']).timestamp())
       else:
           # In alerts from AIT-ADS, field is named '@timestamp'
-          timestamps.append(datetime.strptime(alert_obj.d['@timestamp'], "%Y-%m-%dT%H:%M:%S.%f%z").timestamp())
+          timestamps.append(parser.isoparse(alert_obj.d['@timestamp']).timestamp())
   return alerts, timestamps
 
 def read_aminer_json(filename):
