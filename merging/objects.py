@@ -30,7 +30,7 @@ class Mergelist:
   def __repr__(self):
     res = self.symbol[0]
     for element in self.elements:
-      res += json.dumps(element) + ', '
+      res += '"' + str(element).replace("\"", "\\\"").replace("'", "\\\"").replace("\n", "\\n") + '", '
     return res[:-2] + self.symbol[-1]
 
 import random

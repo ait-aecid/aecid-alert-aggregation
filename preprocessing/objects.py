@@ -48,10 +48,13 @@ def pretty_json(d, offset=''):
     else:
       if type(value) == Wildcard:
         value = '"§"'
-      elif type(value) == Mergelist or type(value) == list:
+      elif type(value) == Mergelist:
         value = str(value)
+      elif type(value) == list:
+        for v in value:
+          value = '"' + str(v).replace("\"", "\\\"").replace("'", "\\\"").replace("\n", "\\n") + '"'
       else:
-        value = '"' + str(value) + '"'
+        value = '"' + str(value).replace("\"", "\\\"").replace("'", "\\\"").replace("\n", "\\n") + '"'
       res += str(value) + ',\n'
   if len(d) == 0:
     return res[:-1] + '\n' + offset + '}'
